@@ -120,7 +120,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#主题" id="toc-主题" class="nav-link" data-scroll-target="#主题"> <span class="header-section-number">4.1</span> 主题</a></li>
   <li><a href="#组合图" id="toc-组合图" class="nav-link" data-scroll-target="#组合图"> <span class="header-section-number">4.2</span> 组合图</a></li>
   </ul></li>
-  <li><a href="#杂七杂八奇淫技巧" id="toc-杂七杂八奇淫技巧" class="nav-link" data-scroll-target="#杂七杂八奇淫技巧"> <span class="header-section-number">5</span> 杂七杂八|奇淫技巧</a>
+  <li><a href="#杂七杂八-奇淫技巧" id="toc-杂七杂八-奇淫技巧" class="nav-link" data-scroll-target="#杂七杂八-奇淫技巧"> <span class="header-section-number">5</span> 杂七杂八 | 奇淫技巧</a>
   <ul class="collapse">
   <li><a href="#修改源码" id="toc-修改源码" class="nav-link" data-scroll-target="#修改源码"> <span class="header-section-number">5.1</span> 修改源码</a></li>
   <li><a href="#执行字符串" id="toc-执行字符串" class="nav-link" data-scroll-target="#执行字符串"> <span class="header-section-number">5.2</span> 执行字符串</a></li>
@@ -166,13 +166,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="1"><span class="header-section-number">1</span> 正则表达式</h1>
 <section id="零宽断言" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="零宽断言"><span class="header-section-number">1.1</span> 零宽断言</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-1_70cf5f75c756f8ac9e94c124841ff00c">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">"sdfs--"</span>, <span class="st">".*?(?=-)"</span>) <span class="co"># 舍去零宽断言符号</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "sdfs"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-2_3a6364ffc50ba84ddeb2f96b0be11e1e">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"H11A1PNIO"</span>, <span class="st">"H1A1PNIO"</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(a, <span class="st">".*(?=P)"</span>) <span class="co"># 提取 P 前面的字符</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] "H11A1" "H1A1"</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -180,7 +180,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="字母与数字分割" class="level2" data-number="1.2">
 <h2 data-number="1.2" class="anchored" data-anchor-id="字母与数字分割"><span class="header-section-number">1.2</span> 字母与数字分割</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-3_cf863304608fec9dc3e4712684fff38c">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">test =</span> <span class="fu">c</span>(<span class="st">"MG1"</span>, <span class="st">"MGW1"</span>)) <span class="sc">%&gt;%</span> </span>
@@ -196,7 +196,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="批量建模" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> 批量建模</h1>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-4_b572ed5de309d9df2e8f3af52b5d9350">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(purrr)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="fu">c</span>(<span class="st">" ~ wt"</span>))</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(y, <span class="sc">~</span><span class="fu">lm</span>(.x, <span class="at">data =</span> mtcars))</span>
@@ -234,7 +234,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="3"><span class="header-section-number">3</span> dplyr + tidyr</h1>
 <section id="拆分行为多列" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="拆分行为多列"><span class="header-section-number">3.1</span> 拆分行为多列</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-5_79bf5f2d86e9d4f187af19d44639c51f">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
@@ -255,7 +255,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="4"><span class="header-section-number">4</span> ggplot2</h1>
 <section id="主题" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="主题"><span class="header-section-number">4.1</span> 主题</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-6_dcd1bd0ff1ec73de26e7af3a2347d24d">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
@@ -270,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="组合图" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="组合图"><span class="header-section-number">4.2</span> 组合图</h2>
 <p>利用了字符串拼接成所需执行代码的方式。</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-7_b5112c781082d50ecfe14cdee09227f6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -291,20 +291,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(p1, p2, p3, p4)</span>
 <span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">parse</span>(<span class="at">file =</span> <span class="st">"my_list"</span>,</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>      <span class="at">text =</span> <span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"my_list[["</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(my_list), <span class="st">"]]"</span>),</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sep =</span> <span class="st">" / "</span>, <span class="at">file =</span> <span class="st">"my_list"</span>)) <span class="sc">%&gt;%</span> <span class="fu">eval</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"my_list[["</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(my_list), <span class="st">"]]"</span>),</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sep =</span> <span class="st">" / "</span>, <span class="at">file =</span> <span class="st">"my_list"</span>) <span class="co"># 生成一个 connection</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">file =</span> <span class="st">"my_list"</span>)) <span class="co"># 运行该 connection</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <p><img src="index_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 </section>
 </section>
-<section id="杂七杂八奇淫技巧" class="level1" data-number="5">
-<h1 data-number="5"><span class="header-section-number">5</span> 杂七杂八|奇淫技巧</h1>
+<section id="杂七杂八-奇淫技巧" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> 杂七杂八 | 奇淫技巧</h1>
 <section id="修改源码" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="修改源码"><span class="header-section-number">5.1</span> 修改源码</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-8_bfca9c9523e802f06f6aa7ee30cf15c9">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trace</span>(rstatix<span class="sc">:::</span>as_tidy_cor, <span class="at">edit =</span> T) <span class="co"># 修改后保存</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cor_test</span>(iris, Sepal.Length, Petal.Length) <span class="co"># 可以把调整 cor 输出为 4 位</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -312,12 +312,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="执行字符串" class="level2" data-number="5.2">
 <h2 data-number="5.2" class="anchored" data-anchor-id="执行字符串"><span class="header-section-number">5.2</span> 执行字符串</h2>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-9_0d098e9414c27da135f794c04cf84c9e">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> <span class="st">"c(1:10)"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> text))</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-10_e3459e7415e91ffa3b0d3c8b460e7966">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="st">"1/2"</span>))</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; [1] 0.5</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -328,7 +328,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="psych" class="level2" data-number="6.1">
 <h2 data-number="6.1" class="anchored" data-anchor-id="psych"><span class="header-section-number">6.1</span> psych</h2>
 <p>描述性统计：</p>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-11_fbe57857f48aa5a8086986978f14f084">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Attaching package: 'psych'</span></span>
@@ -350,53 +350,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     -1.36 0.06   0.3   1.8</span></span>
 <span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        -1.52 0.07   1.0   3.0</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
+<div class="cell" data-hash="index_cache/html/unnamed-chunk-12_3d0c465ec90eb78990192361e7196fbb">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组统计</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe.by</span>(iris, <span class="at">group =</span> iris<span class="sc">$</span>Species, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Warning: describe.by is deprecated. Please use the describeBy function</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Descriptive statistics by group </span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: setosa</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range skew kurtosis</span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 5.01 0.35    5.0    5.00 0.30 4.3 5.8   1.5 0.11    -0.45</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 3.43 0.38    3.4    3.42 0.37 2.3 4.4   2.1 0.04     0.60</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 1.46 0.17    1.5    1.46 0.15 1.0 1.9   0.9 0.10     0.65</span></span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 0.25 0.11    0.2    0.24 0.00 0.1 0.6   0.5 1.18     1.26</span></span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 1.00 0.00    1.0    1.00 0.00 1.0 1.0   0.0  NaN      NaN</span></span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.05   4.8  5.20</span></span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.05   3.2  3.68</span></span>
-<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.02   1.4  1.58</span></span>
-<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.01   0.2  0.30</span></span>
-<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00   1.0  1.00</span></span>
-<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
-<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: versicolor</span></span>
-<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range  skew kurtosis</span></span>
-<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 5.94 0.52   5.90    5.94 0.52 4.9 7.0   2.1  0.10    -0.69</span></span>
-<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 2.77 0.31   2.80    2.78 0.30 2.0 3.4   1.4 -0.34    -0.55</span></span>
-<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 4.26 0.47   4.35    4.29 0.52 3.0 5.1   2.1 -0.57    -0.19</span></span>
-<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 1.33 0.20   1.30    1.32 0.22 1.0 1.8   0.8 -0.03    -0.59</span></span>
-<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 2.00 0.00   2.00    2.00 0.00 2.0 2.0   0.0   NaN      NaN</span></span>
-<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
-<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.07  5.60   6.3</span></span>
-<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.04  2.52   3.0</span></span>
-<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.07  4.00   4.6</span></span>
-<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.03  1.20   1.5</span></span>
-<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00  2.00   2.0</span></span>
-<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
-<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: virginica</span></span>
-<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range  skew kurtosis</span></span>
-<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 6.59 0.64   6.50    6.57 0.59 4.9 7.9   3.0  0.11    -0.20</span></span>
-<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 2.97 0.32   3.00    2.96 0.30 2.2 3.8   1.6  0.34     0.38</span></span>
-<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 5.55 0.55   5.55    5.51 0.67 4.5 6.9   2.4  0.52    -0.37</span></span>
-<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 2.03 0.27   2.00    2.03 0.30 1.4 2.5   1.1 -0.12    -0.75</span></span>
-<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 3.00 0.00   3.00    3.00 0.00 3.0 3.0   0.0   NaN      NaN</span></span>
-<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
-<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.09  6.23  6.90</span></span>
-<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.05  2.80  3.18</span></span>
-<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.08  5.10  5.88</span></span>
-<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.04  1.80  2.30</span></span>
-<span id="cb12-46"><a href="#cb12-46" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00  3.00  3.00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(iris, <span class="at">group =</span> iris<span class="sc">$</span>Species, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; </span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;  Descriptive statistics by group </span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: setosa</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range skew kurtosis</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 5.01 0.35    5.0    5.00 0.30 4.3 5.8   1.5 0.11    -0.45</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 3.43 0.38    3.4    3.42 0.37 2.3 4.4   2.1 0.04     0.60</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 1.46 0.17    1.5    1.46 0.15 1.0 1.9   0.9 0.10     0.65</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 0.25 0.11    0.2    0.24 0.00 0.1 0.6   0.5 1.18     1.26</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 1.00 0.00    1.0    1.00 0.00 1.0 1.0   0.0  NaN      NaN</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.05   4.8  5.20</span></span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.05   3.2  3.68</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.02   1.4  1.58</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.01   0.2  0.30</span></span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00   1.0  1.00</span></span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: versicolor</span></span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range  skew kurtosis</span></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 5.94 0.52   5.90    5.94 0.52 4.9 7.0   2.1  0.10    -0.69</span></span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 2.77 0.31   2.80    2.78 0.30 2.0 3.4   1.4 -0.34    -0.55</span></span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 4.26 0.47   4.35    4.29 0.52 3.0 5.1   2.1 -0.57    -0.19</span></span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 1.33 0.20   1.30    1.32 0.22 1.0 1.8   0.8 -0.03    -0.59</span></span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 2.00 0.00   2.00    2.00 0.00 2.0 2.0   0.0   NaN      NaN</span></span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
+<span id="cb12-27"><a href="#cb12-27" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.07  5.60   6.3</span></span>
+<span id="cb12-28"><a href="#cb12-28" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.04  2.52   3.0</span></span>
+<span id="cb12-29"><a href="#cb12-29" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.07  4.00   4.6</span></span>
+<span id="cb12-30"><a href="#cb12-30" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.03  1.20   1.5</span></span>
+<span id="cb12-31"><a href="#cb12-31" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00  2.00   2.0</span></span>
+<span id="cb12-32"><a href="#cb12-32" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; ------------------------------------------------------------ </span></span>
+<span id="cb12-33"><a href="#cb12-33" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; group: virginica</span></span>
+<span id="cb12-34"><a href="#cb12-34" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;              vars  n mean   sd median trimmed  mad min max range  skew kurtosis</span></span>
+<span id="cb12-35"><a href="#cb12-35" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length    1 50 6.59 0.64   6.50    6.57 0.59 4.9 7.9   3.0  0.11    -0.20</span></span>
+<span id="cb12-36"><a href="#cb12-36" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width     2 50 2.97 0.32   3.00    2.96 0.30 2.2 3.8   1.6  0.34     0.38</span></span>
+<span id="cb12-37"><a href="#cb12-37" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length    3 50 5.55 0.55   5.55    5.51 0.67 4.5 6.9   2.4  0.52    -0.37</span></span>
+<span id="cb12-38"><a href="#cb12-38" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width     4 50 2.03 0.27   2.00    2.03 0.30 1.4 2.5   1.1 -0.12    -0.75</span></span>
+<span id="cb12-39"><a href="#cb12-39" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*        5 50 3.00 0.00   3.00    3.00 0.00 3.0 3.0   0.0   NaN      NaN</span></span>
+<span id="cb12-40"><a href="#cb12-40" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;                se Q0.25 Q0.75</span></span>
+<span id="cb12-41"><a href="#cb12-41" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Length 0.09  6.23  6.90</span></span>
+<span id="cb12-42"><a href="#cb12-42" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Sepal.Width  0.05  2.80  3.18</span></span>
+<span id="cb12-43"><a href="#cb12-43" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Length 0.08  5.10  5.88</span></span>
+<span id="cb12-44"><a href="#cb12-44" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Petal.Width  0.04  1.80  2.30</span></span>
+<span id="cb12-45"><a href="#cb12-45" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt; Species*     0.00  3.00  3.00</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>

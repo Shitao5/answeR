@@ -9,6 +9,7 @@ knitr:
   opts_chunk: 
     collapse: TRUE
     comment: "#>"
+    cache: true
 ---
 
 # 正则表达式
@@ -97,12 +98,12 @@ p4 <- ggplot(mpg) +
 
 my_list <- list(p1, p2, p3, p4)
 
-parse(file = "my_list",
-      text = cat(paste0("my_list[[", 1:length(my_list), "]]"),
-                 sep = " / ", file = "my_list")) %>% eval()
+cat(paste0("my_list[[", 1:length(my_list), "]]"),
+                 sep = " / ", file = "my_list") # 生成一个 connection
+eval(parse(file = "my_list")) # 运行该 connection
 ```
 
-# 杂七杂八|奇淫技巧
+# 杂七杂八 | 奇淫技巧
 
 ## 修改源码
 
@@ -139,7 +140,7 @@ psych::describe(iris, quant = c(.25, .75))  # 不支持 dplyr 的 group_by()
 
 ```{r}
 # 分组统计
-psych::describe.by(iris, group = iris$Species, quant = c(.25, .75))
+psych::describeBy(iris, group = iris$Species, quant = c(.25, .75))
 ```
 
 
