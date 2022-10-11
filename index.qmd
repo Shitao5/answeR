@@ -1,0 +1,146 @@
+---
+title: "答疑汇总"
+author: shitao
+date: "`r Sys.Date()`"
+format: html
+toc: true
+number-sections: true
+knitr: 
+  opts_chunk: 
+    collapse: TRUE
+    comment: "#>"
+---
+
+# 正则表达式
+
+## 零宽断言
+
+```{r}
+library(stringr)
+
+str_extract("sdfs--", ".*?(?=-)") # 舍去零宽断言符号
+```
+
+```{r}
+a <- c("H11A1PNIO", "H1A1PNIO")
+str_extract(a, ".*(?=P)") # 提取 P 前面的字符
+```
+
+
+## 字母与数字分割
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+tibble(test = c("MG1", "MGW1")) %>% 
+  mutate(words = str_extract(test, "[:alpha:]+"),
+    digits = str_extract(test, "\\d+"))
+```
+
+# 批量建模
+
+```{r}
+library(purrr)
+y <- paste0(c("mpg", "disp", "hp"), c(" ~ wt"))
+map(y, ~lm(.x, data = mtcars))
+```
+
+# dplyr + tidyr
+
+## 拆分行为多列
+
+```{r}
+library(tidyverse)
+
+tibble(x = 1:2,
+       y = c("a, b, c", "a, d")) %>% 
+  separate_rows(y, sep = ",")
+```
+
+# ggplot2
+
+## 主题
+
+```{r}
+library(ggplot2)
+
+theme_set(theme_bw())
+
+ggplot(mpg, aes(cty, displ)) +
+  geom_point()
+```
+
+## 组合图
+
+利用了字符串拼接成所需执行代码的方式。
+
+```{r}
+library(ggplot2)
+library(patchwork)
+
+p1 <- ggplot(mpg) + 
+  geom_point(aes(x = displ, y = hwy))
+
+p2 <- ggplot(mpg) + 
+  geom_bar(aes(x = as.character(year), fill = drv), position = "dodge") + 
+  labs(x = "year")
+
+p3 <- ggplot(mpg) + 
+  geom_density(aes(x = hwy, fill = drv), colour = NA) + 
+  facet_grid(rows = vars(drv))
+
+p4 <- ggplot(mpg) + 
+  stat_summary(aes(x = drv, y = hwy, fill = drv), geom = "col", fun.data = mean_se) +
+  stat_summary(aes(x = drv, y = hwy), geom = "errorbar", fun.data = mean_se, width = 0.5)
+
+my_list <- list(p1, p2, p3, p4)
+
+parse(file = "my_list",
+      text = cat(paste0("my_list[[", 1:length(my_list), "]]"),
+                 sep = " / ", file = "my_list")) %>% eval()
+```
+
+# 杂七杂八|奇淫技巧
+
+## 修改源码
+
+```{r}
+#| eval: false
+library(rstatix)
+trace(rstatix:::as_tidy_cor, edit = T) # 修改后保存
+rstatix::cor_test(iris, Sepal.Length, Petal.Length) # 可以把调整 cor 输出为 4 位
+```
+
+## 执行字符串
+
+```{r}
+text = "c(1:10)"
+eval(parse(text = text))
+```
+
+```{r}
+eval(parse(text = "1/2"))
+```
+
+
+# 其他包
+
+## psych
+
+描述性统计：
+
+```{r}
+library(psych)
+
+psych::describe(iris, quant = c(.25, .75))  # 不支持 dplyr 的 group_by()
+```
+
+```{r}
+# 分组统计
+psych::describe.by(iris, group = iris$Species, quant = c(.25, .75))
+```
+
+
+
