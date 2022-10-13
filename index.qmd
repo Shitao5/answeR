@@ -14,8 +14,6 @@ toc: true
 number-sections: true
 knitr: 
   opts_chunk: 
-    collapse: TRUE
-    comment: "#>"
     cache: true
     fig.align: "center"
     out.width: "70%"
@@ -52,7 +50,7 @@ tibble(test = c("MG1", "MGW1")) %>%
 
 ## 中文 PDF 输出
 
-在 yaml 中加上：
+在 YAML 中加上：
 
 ```yaml
 include-in-header: 
@@ -188,6 +186,7 @@ psych::describe(iris, quant = c(.25, .75))  # 不支持 dplyr 的 group_by()
 ```
 
 ```{r}
+#| eval: false
 # 分组统计
 psych::describeBy(iris, group = iris$Species, quant = c(.25, .75))
 ```
