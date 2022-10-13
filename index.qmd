@@ -2,7 +2,11 @@
 title: "答疑汇总"
 author: shitao
 date: "`r Sys.Date()`"
-format: html
+format:
+  html:
+    smooth-scroll: true
+    link-external-icon: true
+    link-external-newwindow: true
 comments:
   utterances:
     repo: https://github.com/Shitao5/answeR
@@ -189,7 +193,7 @@ psych::describeBy(iris, group = iris$Species, quant = c(.25, .75))
 ```
 
 <script src="https://utteranc.es/client.js"
-        repo="https://github.com/Shitao5/answeR"
+        repo="Shitao5/answeR"
         issue-term="pathname"
         theme="github-light"
         crossorigin="anonymous"
