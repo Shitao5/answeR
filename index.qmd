@@ -10,6 +10,8 @@ knitr:
     collapse: TRUE
     comment: "#>"
     cache: true
+    fig.align: "center"
+    out.width: "70%"
 ---
 
 # 正则表达式
@@ -27,7 +29,6 @@ a <- c("H11A1PNIO", "H1A1PNIO")
 str_extract(a, ".*(?=P)") # 提取 P 前面的字符
 ```
 
-
 ## 字母与数字分割
 
 ```{r}
@@ -40,29 +41,54 @@ tibble(test = c("MG1", "MGW1")) %>%
     digits = str_extract(test, "\\d+"))
 ```
 
-# 批量建模
+# Quarto
 
-```{r}
-library(purrr)
-y <- paste0(c("mpg", "disp", "hp"), c(" ~ wt"))
-map(y, ~lm(.x, data = mtcars))
+## 中文 PDF 输出
+
+在 yaml 中加上：
+
+```yaml
+include-in-header: 
+  text: 
+    \usepackage{ctex}
 ```
 
-# dplyr + tidyr
+# tidyverse
 
-## 拆分行为多列
+## dplyr + tidyr
+
+### 拆分行为多列
 
 ```{r}
 library(tidyverse)
 
 tibble(x = 1:2,
        y = c("a, b, c", "a, d")) %>% 
-  separate_rows(y, sep = ",")
+  separate_rows(y, sep = ", ")
 ```
 
-# ggplot2
+### rowwise()
 
-## 主题
+计算每行 `,` 前的数的和除以 `,` 后的数的和：
+
+```{r}
+library(tidyverse)
+
+data <- tribble(~A , ~B, ~C,
+               "12,0", "21,2", "36,4",
+               "4,2", "3,0", "2,0",
+               "0,2", "0,0", "1,0")
+
+data %>% 
+  mutate(across(1:3, ~ str_split(.x, ",")),
+         across(1:3, ~ map(.x, as.numeric))) %>% 
+  rowwise() %>% 
+  mutate(res = sum(A[1], B[1], C[1])/ sum(A[2], B[2], C[2]))
+```
+
+## ggplot2
+
+### 主题
 
 ```{r}
 library(ggplot2)
@@ -73,9 +99,9 @@ ggplot(mpg, aes(cty, displ)) +
   geom_point()
 ```
 
-## 组合图
+### 组合图
 
-利用了字符串拼接成所需执行代码的方式。
+利用字符串拼接成所需执行代码：
 
 ```{r}
 library(ggplot2)
@@ -105,6 +131,14 @@ eval(parse(file = "my_list")) # 运行该 connection
 
 # 杂七杂八 | 奇淫技巧
 
+## 批量建模
+
+```{r}
+library(purrr)
+y <- paste0(c("mpg", "disp", "hp"), c(" ~ wt"))
+map(y, ~lm(.x, data = mtcars))
+```
+
 ## 修改源码
 
 ```{r}
@@ -125,6 +159,14 @@ eval(parse(text = text))
 eval(parse(text = "1/2"))
 ```
 
+## 缺失值统计
+
+```{r}
+data <- tibble(x = c(rep(letters[1:3], 2), NA, NA))
+data
+data[data$x == "a",] # 筛选时缺失值留在表格中
+table(data$x == "a") # 缺失值没有被统计进去
+```
 
 # 其他包
 
@@ -142,6 +184,3 @@ psych::describe(iris, quant = c(.25, .75))  # 不支持 dplyr 的 group_by()
 # 分组统计
 psych::describeBy(iris, group = iris$Species, quant = c(.25, .75))
 ```
-
-
-
