@@ -3,6 +3,9 @@ title: "答疑汇总"
 author: shitao
 date: "`r Sys.Date()`"
 format: html
+comments:
+  utterances:
+    repo: https://github.com/Shitao5/answeR
 toc: true
 number-sections: true
 knitr: 
