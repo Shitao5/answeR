@@ -187,3 +187,11 @@ psych::describe(iris, quant = c(.25, .75))  # 不支持 dplyr 的 group_by()
 # 分组统计
 psych::describeBy(iris, group = iris$Species, quant = c(.25, .75))
 ```
+
+<script src="https://utteranc.es/client.js"
+        repo="https://github.com/Shitao5/answeR"
+        issue-term="pathname"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+</script>
