@@ -7,9 +7,6 @@ format:
     smooth-scroll: true
     link-external-icon: true
     link-external-newwindow: true
-comments:
-  utterances:
-    repo: https://github.com/Shitao5/answeR
 toc: true
 number-sections: true
 knitr: 
