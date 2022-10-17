@@ -16,28 +16,40 @@ knitr:
     out.width: "70%"
 ---
 
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+
 # 正则表达式
 
 ## 零宽断言
 
 ```{r}
-library(stringr)
-
-str_extract("sdfs--", ".*?(?=-)") # 舍去零宽断言符号
+# 舍去零宽断言符号
+str_extract("sdfs--", ".*?(?=-)")
 ```
 
 ```{r}
+# 提取 P 前面的字符
 a <- c("H11A1PNIO", "H1A1PNIO")
-str_extract(a, ".*(?=P)") # 提取 P 前面的字符
+str_extract(a, ".*(?=P)")
 ```
+
+```{r}
+# 提取 Melbourne
+x <- "Stamford Plaza, 111 Little Conllins St, Melbourne Vic 3000" 
+x %>% 
+  str_extract("(?<=,)[^,]*$") %>% 
+  str_extract("(?<= )\\w+")
+```
+
+
 
 ## 字母与数字分割
 
 ```{r}
-#| message: false
-
-library(tidyverse)
-
 tibble(test = c("MG1", "MGW1")) %>% 
   mutate(words = str_extract(test, "[:alpha:]+"),
     digits = str_extract(test, "\\d+"))
@@ -62,8 +74,6 @@ include-in-header:
 ### 拆分行为多列
 
 ```{r}
-library(tidyverse)
-
 tibble(x = 1:2,
        y = c("a, b, c", "a, d")) %>% 
   separate_rows(y, sep = ", ")
@@ -74,8 +84,6 @@ tibble(x = 1:2,
 计算每行 `,` 前的数的和除以 `,` 后的数的和：
 
 ```{r}
-library(tidyverse)
-
 data <- tribble(~A , ~B, ~C,
                "12,0", "21,2", "36,4",
                "4,2", "3,0", "2,0",
@@ -93,8 +101,6 @@ data %>%
 ### 主题
 
 ```{r}
-library(ggplot2)
-
 theme_set(theme_bw())
 
 ggplot(mpg, aes(cty, displ)) +
@@ -106,7 +112,6 @@ ggplot(mpg, aes(cty, displ)) +
 利用字符串拼接成所需执行代码：
 
 ```{r}
-library(ggplot2)
 library(patchwork)
 
 p1 <- ggplot(mpg) + 
@@ -136,7 +141,6 @@ eval(parse(file = "my_list")) # 运行该 connection
 ## 批量建模
 
 ```{r}
-library(purrr)
 y <- paste0(c("mpg", "disp", "hp"), c(" ~ wt"))
 map(y, ~lm(.x, data = mtcars))
 ```
