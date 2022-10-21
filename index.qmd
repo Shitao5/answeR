@@ -21,7 +21,6 @@ knitr:
 library(tidyverse)
 ```
 
-
 # 正则表达式
 
 ## 零宽断言
@@ -44,8 +43,6 @@ x %>%
   str_extract("(?<=,)[^,]*$") %>% 
   str_extract("(?<= )\\w+")
 ```
-
-
 
 ## 字母与数字分割
 
@@ -135,6 +132,28 @@ cat(paste0("my_list[[", 1:length(my_list), "]]"),
                  sep = " / ", file = "my_list") # 生成一个 connection
 eval(parse(file = "my_list")) # 运行该 connection
 ```
+
+## purrr
+
+### 对列名迭代
+
+利用 tidyverse 与 base R 混合编程会出现奇奇怪怪的问题，主要是和 [Tidy evaluation](https://mastering-shiny.org/action-tidy.html) 有关系。如果需要用到 tidyverse 的函数，建议直接在 tidyverse 的框架下完成。大致流程就是：
+
+1. 写一个函数；
+1. 用 `map()` 系列的函数迭代。
+
+```{r}
+name <- names(mpg)[1:2]
+
+fn <- function(cols) {
+  mpg %>% 
+  group_by(.data[[cols]]) %>% 
+  summarise(freq = n())
+}
+
+map(name, fn)
+```
+
 
 # 杂七杂八 | 奇淫技巧
 
