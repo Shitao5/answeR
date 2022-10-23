@@ -25,28 +25,32 @@ library(tidyverse)
 
 ## 零宽断言
 
-```{r}
-# 舍去零宽断言符号
-str_extract("sdfs--", ".*?(?=-)")
-```
+- 提取 `P` 前面的字符：
 
 ```{r}
-# 提取 P 前面的字符
 a <- c("H11A1PNIO", "H1A1PNIO")
 str_extract(a, ".*(?=P)")
 ```
 
+- 提取 `Melbourne`：
+
 ```{r}
-# 提取 Melbourne
 x <- "Stamford Plaza, 111 Little Conllins St, Melbourne Vic 3000" 
 x %>% 
   str_extract("(?<=,)[^,]*$") %>% 
   str_extract("(?<= )\\w+")
 ```
 
-## 字母与数字分割
+- 零宽断言符号存在重复时提取：
 
 ```{r}
+str_extract("sdfs--", ".*?(?=-)")
+```
+
+## 常用
+
+```{r}
+# 提取字母与数字
 tibble(test = c("MG1", "MGW1")) %>% 
   mutate(words = str_extract(test, "[:alpha:]+"),
     digits = str_extract(test, "\\d+"))
@@ -68,7 +72,9 @@ include-in-header:
 
 ## dplyr + tidyr
 
-### 拆分行为多列
+### separate_rows()
+
+- 拆分行为多列
 
 ```{r}
 tibble(x = 1:2,
@@ -78,7 +84,7 @@ tibble(x = 1:2,
 
 ### rowwise()
 
-计算每行 `,` 前的数的和除以 `,` 后的数的和：
+- 计算每行 `,` 前的数的和除以 `,` 后的数的和：
 
 ```{r}
 data <- tribble(~A , ~B, ~C,
@@ -91,6 +97,25 @@ data %>%
          across(1:3, ~ map(.x, as.numeric))) %>% 
   rowwise() %>% 
   mutate(res = sum(A[1], B[1], C[1])/ sum(A[2], B[2], C[2]))
+```
+
+- 对不同列含有的数值组合后去重：
+
+```{r}
+df <- tribble(
+  ~V1, ~V2, ~V3,
+  58,    0,   2,
+  171,   1,   3,
+  0,    58,   2,
+  1,   171,   3
+)
+
+df %>% 
+  rowwise() %>% 
+  mutate(total = list(c(V1, V2, V3))) %>% 
+  as_tibble() %>% 
+  mutate(total = map(total, sort)) %>% 
+  distinct(total, .keep_all = TRUE)
 ```
 
 ## ggplot2

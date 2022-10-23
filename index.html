@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="shitao">
-<meta name="dcterms.date" content="2022-10-21">
+<meta name="dcterms.date" content="2022-10-23">
 
 <title>答疑汇总</title>
 <style>
@@ -109,7 +109,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#正则表达式" id="toc-正则表达式" class="nav-link active" data-scroll-target="#正则表达式"> <span class="header-section-number">1</span> 正则表达式</a>
   <ul class="collapse">
   <li><a href="#零宽断言" id="toc-零宽断言" class="nav-link" data-scroll-target="#零宽断言"> <span class="header-section-number">1.1</span> 零宽断言</a></li>
-  <li><a href="#字母与数字分割" id="toc-字母与数字分割" class="nav-link" data-scroll-target="#字母与数字分割"> <span class="header-section-number">1.2</span> 字母与数字分割</a></li>
+  <li><a href="#常用" id="toc-常用" class="nav-link" data-scroll-target="#常用"> <span class="header-section-number">1.2</span> 常用</a></li>
   </ul></li>
   <li><a href="#quarto" id="toc-quarto" class="nav-link" data-scroll-target="#quarto"> <span class="header-section-number">2</span> Quarto</a>
   <ul class="collapse">
@@ -119,7 +119,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#dplyr-tidyr" id="toc-dplyr-tidyr" class="nav-link" data-scroll-target="#dplyr-tidyr"> <span class="header-section-number">3.1</span> dplyr + tidyr</a>
   <ul class="collapse">
-  <li><a href="#拆分行为多列" id="toc-拆分行为多列" class="nav-link" data-scroll-target="#拆分行为多列"> <span class="header-section-number">3.1.1</span> 拆分行为多列</a></li>
+  <li><a href="#separate_rows" id="toc-separate_rows" class="nav-link" data-scroll-target="#separate_rows"> <span class="header-section-number">3.1.1</span> separate_rows()</a></li>
   <li><a href="#rowwise" id="toc-rowwise" class="nav-link" data-scroll-target="#rowwise"> <span class="header-section-number">3.1.2</span> rowwise()</a></li>
   </ul></li>
   <li><a href="#ggplot2" id="toc-ggplot2" class="nav-link" data-scroll-target="#ggplot2"> <span class="header-section-number">3.2</span> ggplot2</a>
@@ -167,7 +167,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">October 21, 2022</p>
+      <p class="date">October 23, 2022</p>
     </div>
   </div>
     
@@ -183,38 +183,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="1"><span class="header-section-number">1</span> 正则表达式</h1>
 <section id="零宽断言" class="level2" data-number="1.1">
 <h2 data-number="1.1" class="anchored" data-anchor-id="零宽断言"><span class="header-section-number">1.1</span> 零宽断言</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-2_00f470f154205f027b9c26a16cb78915">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 舍去零宽断言符号</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">"sdfs--"</span>, <span class="st">".*?(?=-)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "sdfs"</code></pre>
-</div>
-</div>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-3_609cb69ae4969cdd733aa0c9d0ca257b">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取 P 前面的字符</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"H11A1PNIO"</span>, <span class="st">"H1A1PNIO"</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(a, <span class="st">".*(?=P)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>提取 <code>P</code> 前面的字符：</li>
+</ul>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-2_f80c938c3c708b474bf776f346d54d0e">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"H11A1PNIO"</span>, <span class="st">"H1A1PNIO"</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(a, <span class="st">".*(?=P)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "H11A1" "H1A1" </code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-4_eb245f95990f91b6a71c7029b3f5af6b">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取 Melbourne</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"Stamford Plaza, 111 Little Conllins St, Melbourne Vic 3000"</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(<span class="st">"(?&lt;=,)[^,]*$"</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(<span class="st">"(?&lt;= )</span><span class="sc">\\</span><span class="st">w+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<ul>
+<li>提取 <code>Melbourne</code>：</li>
+</ul>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-3_08fe01e1e7d06b104388630896bda4c9">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">"Stamford Plaza, 111 Little Conllins St, Melbourne Vic 3000"</span> </span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="sc">%&gt;%</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(<span class="st">"(?&lt;=,)[^,]*$"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_extract</span>(<span class="st">"(?&lt;= )</span><span class="sc">\\</span><span class="st">w+"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "Melbourne"</code></pre>
 </div>
 </div>
+<ul>
+<li>零宽断言符号存在重复时提取：</li>
+</ul>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-4_774aff352e480dc27fa37c0698a6e3ce">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str_extract</span>(<span class="st">"sdfs--"</span>, <span class="st">".*?(?=-)"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "sdfs"</code></pre>
+</div>
+</div>
 </section>
-<section id="字母与数字分割" class="level2" data-number="1.2">
-<h2 data-number="1.2" class="anchored" data-anchor-id="字母与数字分割"><span class="header-section-number">1.2</span> 字母与数字分割</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-5_a89a0c4b1855564a7ea1b1f608ff3afa">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">test =</span> <span class="fu">c</span>(<span class="st">"MG1"</span>, <span class="st">"MGW1"</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">words =</span> <span class="fu">str_extract</span>(test, <span class="st">"[:alpha:]+"</span>),</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">str_extract</span>(test, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="常用" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="常用"><span class="header-section-number">1.2</span> 常用</h2>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-5_00ddeaec8dac617ce1733923c9b9881f">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 提取字母与数字</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">test =</span> <span class="fu">c</span>(<span class="st">"MG1"</span>, <span class="st">"MGW1"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">words =</span> <span class="fu">str_extract</span>(test, <span class="st">"[:alpha:]+"</span>),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">digits =</span> <span class="fu">str_extract</span>(test, <span class="st">"</span><span class="sc">\\</span><span class="st">d+"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   test  words digits
@@ -239,8 +246,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="3"><span class="header-section-number">3</span> tidyverse</h1>
 <section id="dplyr-tidyr" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="dplyr-tidyr"><span class="header-section-number">3.1</span> dplyr + tidyr</h2>
-<section id="拆分行为多列" class="level3" data-number="3.1.1">
-<h3 data-number="3.1.1" class="anchored" data-anchor-id="拆分行为多列"><span class="header-section-number">3.1.1</span> 拆分行为多列</h3>
+<section id="separate_rows" class="level3" data-number="3.1.1">
+<h3 data-number="3.1.1" class="anchored" data-anchor-id="separate_rows"><span class="header-section-number">3.1.1</span> separate_rows()</h3>
+<ul>
+<li>拆分行为多列</li>
+</ul>
 <div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-6_37a9caaf4dbdb1725af7344f491ff426">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tibble</span>(<span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="fu">c</span>(<span class="st">"a, b, c"</span>, <span class="st">"a, d"</span>)) <span class="sc">%&gt;%</span> </span>
@@ -259,7 +269,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="rowwise" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="rowwise"><span class="header-section-number">3.1.2</span> rowwise()</h3>
-<p>计算每行 <code>,</code> 前的数的和除以 <code>,</code> 后的数的和：</p>
+<ul>
+<li>计算每行 <code>,</code> 前的数的和除以 <code>,</code> 后的数的和：</li>
+</ul>
 <div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-7_c62bca2ab2c72cdf582075610668cf25">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tribble</span>(<span class="sc">~</span>A , <span class="sc">~</span>B, <span class="sc">~</span>C,</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>               <span class="st">"12,0"</span>, <span class="st">"21,2"</span>, <span class="st">"36,4"</span>,</span>
@@ -281,21 +293,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 3 &lt;dbl [2]&gt; &lt;dbl [2]&gt; &lt;dbl [2]&gt;   0.5</code></pre>
 </div>
 </div>
+<ul>
+<li>对不同列含有的数值组合后去重：</li>
+</ul>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-8_834a31329ca02ab07b3e26d9bf05aea5">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">tribble</span>(</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="sc">~</span>V1, <span class="sc">~</span>V2, <span class="sc">~</span>V3,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="dv">58</span>,    <span class="dv">0</span>,   <span class="dv">2</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="dv">171</span>,   <span class="dv">1</span>,   <span class="dv">3</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="dv">0</span>,    <span class="dv">58</span>,   <span class="dv">2</span>,</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="dv">1</span>,   <span class="dv">171</span>,   <span class="dv">3</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rowwise</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">list</span>(<span class="fu">c</span>(V1, V2, V3))) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">total =</span> <span class="fu">map</span>(total, sort)) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">distinct</span>(total, <span class="at">.keep_all =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+     V1    V2    V3 total    
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;list&gt;   
+1    58     0     2 &lt;dbl [3]&gt;
+2   171     1     3 &lt;dbl [3]&gt;</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="ggplot2" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="ggplot2"><span class="header-section-number">3.2</span> ggplot2</h2>
 <section id="主题" class="level3" data-number="3.2.1">
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="主题"><span class="header-section-number">3.2.1</span> 主题</h3>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-8_3eea0eee8b6f642585d87bff28600699">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, displ)) <span class="sc">+</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-9_967de0c8c3dd2b8ef7c4b566a107786a">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_bw</span>())</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(mpg, <span class="fu">aes</span>(cty, displ)) <span class="sc">+</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -304,33 +342,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="组合图" class="level3" data-number="3.2.2">
 <h3 data-number="3.2.2" class="anchored" data-anchor-id="组合图"><span class="header-section-number">3.2.2</span> 组合图</h3>
 <p>利用字符串拼接成所需执行代码：</p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-9_f9ad0ce24057d3fd66667ce4ce1d8b1e">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.character</span>(year), <span class="at">fill =</span> drv), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"year"</span>)</span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
-<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">fill =</span> drv), <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
-<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(drv))</span>
-<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
-<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">fill =</span> drv), <span class="at">geom =</span> <span class="st">"col"</span>, <span class="at">fun.data =</span> mean_se) <span class="sc">+</span></span>
-<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy), <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">fun.data =</span> mean_se, <span class="at">width =</span> <span class="fl">0.5</span>)</span>
-<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(p1, p2, p3, p4)</span>
-<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"my_list[["</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(my_list), <span class="st">"]]"</span>),</span>
-<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sep =</span> <span class="st">" / "</span>, <span class="at">file =</span> <span class="st">"my_list"</span>) <span class="co"># 生成一个 connection</span></span>
-<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">file =</span> <span class="st">"my_list"</span>)) <span class="co"># 运行该 connection</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-10_f30bb16ebf9c979054aa57e9f0ba6a06">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(patchwork)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> displ, <span class="at">y =</span> hwy))</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.character</span>(year), <span class="at">fill =</span> drv), <span class="at">position =</span> <span class="st">"dodge"</span>) <span class="sc">+</span> </span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"year"</span>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> hwy, <span class="at">fill =</span> drv), <span class="at">colour =</span> <span class="cn">NA</span>) <span class="sc">+</span> </span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(drv))</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>p4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(mpg) <span class="sc">+</span> </span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy, <span class="at">fill =</span> drv), <span class="at">geom =</span> <span class="st">"col"</span>, <span class="at">fun.data =</span> mean_se) <span class="sc">+</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">stat_summary</span>(<span class="fu">aes</span>(<span class="at">x =</span> drv, <span class="at">y =</span> hwy), <span class="at">geom =</span> <span class="st">"errorbar"</span>, <span class="at">fun.data =</span> mean_se, <span class="at">width =</span> <span class="fl">0.5</span>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(p1, p2, p3, p4)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span>(<span class="fu">paste0</span>(<span class="st">"my_list[["</span>, <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(my_list), <span class="st">"]]"</span>),</span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">sep =</span> <span class="st">" / "</span>, <span class="at">file =</span> <span class="st">"my_list"</span>) <span class="co"># 生成一个 connection</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">file =</span> <span class="st">"my_list"</span>)) <span class="co"># 运行该 connection</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="index_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
+<p><img src="index_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" style="width:70.0%"></p>
 </figure>
 </div>
 </div>
@@ -346,16 +384,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>写一个函数；</li>
 <li>用 <code>map()</code> 系列的函数迭代。</li>
 </ol>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-10_7ca193ce3b136fa6c0359d9f9f9abd49">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">names</span>(mpg)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(cols) {</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>  mpg <span class="sc">%&gt;%</span> </span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.data[[cols]]) <span class="sc">%&gt;%</span> </span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">n</span>())</span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(name, fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-11_1b6efea821834019794ecc52392a1a85">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">names</span>(mpg)[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>fn <span class="ot">&lt;-</span> <span class="cf">function</span>(cols) {</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  mpg <span class="sc">%&gt;%</span> </span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(.data[[cols]]) <span class="sc">%&gt;%</span> </span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">freq =</span> <span class="fu">n</span>())</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(name, fn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 # A tibble: 15 × 2
@@ -401,9 +439,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-number="4"><span class="header-section-number">4</span> 杂七杂八 | 奇淫技巧</h1>
 <section id="批量建模" class="level2" data-number="4.1">
 <h2 data-number="4.1" class="anchored" data-anchor-id="批量建模"><span class="header-section-number">4.1</span> 批量建模</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-11_86fa15f80a3b258511c7cca6b37aa29c">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="fu">c</span>(<span class="st">" ~ wt"</span>))</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(y, <span class="sc">~</span><span class="fu">lm</span>(.x, <span class="at">data =</span> mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-12_bfcb12e330b239a4b2643c8e246964ab">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">c</span>(<span class="st">"mpg"</span>, <span class="st">"disp"</span>, <span class="st">"hp"</span>), <span class="fu">c</span>(<span class="st">" ~ wt"</span>))</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span>(y, <span class="sc">~</span><span class="fu">lm</span>(.x, <span class="at">data =</span> mtcars))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[[1]]
 
@@ -438,23 +476,23 @@ Coefficients:
 </section>
 <section id="修改源码" class="level2" data-number="4.2">
 <h2 data-number="4.2" class="anchored" data-anchor-id="修改源码"><span class="header-section-number">4.2</span> 修改源码</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-12_8f6076e61fb5f0892b76045bfc239ec1">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trace</span>(rstatix<span class="sc">:::</span>as_tidy_cor, <span class="at">edit =</span> T) <span class="co"># 修改后保存</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cor_test</span>(iris, Sepal.Length, Petal.Length) <span class="co"># 可以把调整 cor 输出为 4 位</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-13_42131d08d9b5d48af9b33487f0aa5101">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">trace</span>(rstatix<span class="sc">:::</span>as_tidy_cor, <span class="at">edit =</span> T) <span class="co"># 修改后保存</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>rstatix<span class="sc">::</span><span class="fu">cor_test</span>(iris, Sepal.Length, Petal.Length) <span class="co"># 可以把调整 cor 输出为 4 位</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="执行字符串" class="level2" data-number="4.3">
 <h2 data-number="4.3" class="anchored" data-anchor-id="执行字符串"><span class="header-section-number">4.3</span> 执行字符串</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-13_84c7e570ede5ca21d1c8b555d27da1dd">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> <span class="st">"c(1:10)"</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> text))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-14_14f8690b4295a2a720b1f863e6bf116c">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> <span class="st">"c(1:10)"</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> text))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code> [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-14_2958d982b6066f86da36214ad6f85f13">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="st">"1/2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-15_00adfb2a8d10d983e25b21be655cbbea">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eval</span>(<span class="fu">parse</span>(<span class="at">text =</span> <span class="st">"1/2"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] 0.5</code></pre>
 </div>
@@ -462,9 +500,9 @@ Coefficients:
 </section>
 <section id="缺失值统计" class="level2" data-number="4.4">
 <h2 data-number="4.4" class="anchored" data-anchor-id="缺失值统计"><span class="header-section-number">4.4</span> 缺失值统计</h2>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-15_f0cdce142f948d493acf57d6fe829d35">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">rep</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>), <span class="cn">NA</span>, <span class="cn">NA</span>))</span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-16_8a17fbd249503b981d20e792d37fdb64">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> <span class="fu">c</span>(<span class="fu">rep</span>(letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="dv">2</span>), <span class="cn">NA</span>, <span class="cn">NA</span>))</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 8 × 1
   x    
@@ -478,7 +516,7 @@ Coefficients:
 7 &lt;NA&gt; 
 8 &lt;NA&gt; </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>x <span class="sc">==</span> <span class="st">"a"</span>,] <span class="co"># 筛选时缺失值留在表格中</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>data[data<span class="sc">$</span>x <span class="sc">==</span> <span class="st">"a"</span>,] <span class="co"># 筛选时缺失值留在表格中</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 1
   x    
@@ -488,7 +526,7 @@ Coefficients:
 3 &lt;NA&gt; 
 4 &lt;NA&gt; </code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>x <span class="sc">==</span> <span class="st">"a"</span>) <span class="co"># 缺失值没有被统计进去</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(data<span class="sc">$</span>x <span class="sc">==</span> <span class="st">"a"</span>) <span class="co"># 缺失值没有被统计进去</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 FALSE  TRUE 
@@ -502,10 +540,10 @@ FALSE  TRUE
 <section id="psych" class="level2" data-number="5.1">
 <h2 data-number="5.1" class="anchored" data-anchor-id="psych"><span class="header-section-number">5.1</span> psych</h2>
 <p>描述性统计：</p>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-16_f414d2a1224f8fa681d4a07987547633">
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(iris, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))  <span class="co"># 不支持 dplyr 的 group_by()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-17_00b780468c29066b6ad9767a2c983cfd">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(psych)</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describe</span>(iris, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))  <span class="co"># 不支持 dplyr 的 group_by()</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             vars   n mean   sd median trimmed  mad min max range  skew
 Sepal.Length    1 150 5.84 0.83   5.80    5.81 1.04 4.3 7.9   3.6  0.31
@@ -521,9 +559,9 @@ Petal.Width     -1.36 0.06   0.3   1.8
 Species*        -1.52 0.07   1.0   3.0</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-17_a9212b4f87709023699d97020a501dd5">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组统计</span></span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(iris, <span class="at">group =</span> iris<span class="sc">$</span>Species, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell" data-layout-align="center" data-hash="index_cache/html/unnamed-chunk-18_3b93812fd810bd84ebf3d4ba1d4cd38b">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 分组统计</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>psych<span class="sc">::</span><span class="fu">describeBy</span>(iris, <span class="at">group =</span> iris<span class="sc">$</span>Species, <span class="at">quant =</span> <span class="fu">c</span>(.<span class="dv">25</span>, .<span class="dv">75</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <script src="https://utteranc.es/client.js" repo="Shitao5/answeR" issue-term="pathname" theme="github-light" crossorigin="anonymous" async="">
 </script>

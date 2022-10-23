@@ -6,3 +6,4 @@
 .httr-oauth
 .DS_Store
 index_cache/
+temp.R
