@@ -82,6 +82,19 @@ tibble(x = 1:2,
   separate_rows(y, sep = ", ")
 ```
 
+### separate()
+
+- 仅拆分第一个空格
+
+```{r}
+df <- tibble(x = c("a ds vc", "bs dsg sfa gs"))
+
+df %>% 
+  separate(x, c("first", "second"), 
+           sep = " ", extra = "merge")
+```
+
+
 ### rowwise()
 
 - 计算每行 `,` 前的数的和除以 `,` 后的数的和：
@@ -116,6 +129,21 @@ df %>%
   as_tibble() %>% 
   mutate(total = map(total, sort)) %>% 
   distinct(total, .keep_all = TRUE)
+```
+
+### content
+
+包含一系列如 `cur_data()`、`cur_group_id()` 等返回当前分组和变量信息的函数。
+
+```{r}
+df <- tibble(
+  group = c("A", "A", rep("B", 4), "C", "C")
+)
+
+df %>% 
+  group_by(group) %>% 
+  mutate(a = cur_group_id(), # 返回分组的组号
+         b = row_number())
 ```
 
 ## ggplot2
@@ -157,6 +185,25 @@ cat(paste0("my_list[[", 1:length(my_list), "]]"),
                  sep = " / ", file = "my_list") # 生成一个 connection
 eval(parse(file = "my_list")) # 运行该 connection
 ```
+
+### 列名传递
+
+列名太长，通过列号传递映射：
+
+```{r}
+plot_xy <- function(x_i, y_i) {
+  names <- names(mpg)
+  x <- names[x_i]
+  y <- names[y_i]
+  
+  mpg %>% 
+    ggplot(aes(.data[[x]], .data[[y]])) +
+    geom_point()
+}
+
+plot_xy(7, 8)
+```
+
 
 ## purrr
 
