@@ -131,6 +131,12 @@ df %>%
   distinct(total, .keep_all = TRUE)
 ```
 
+```{r}
+df %>% 
+  mutate(total = pmap(., ~ sort(c(...)))) %>% 
+  distinct(total, .keep_all = TRUE)
+```
+
 ### content
 
 包含一系列如 `cur_data()`、`cur_group_id()` 等返回当前分组和变量信息的函数。
