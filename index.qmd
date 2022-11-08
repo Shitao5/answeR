@@ -19,6 +19,7 @@ knitr:
 ```{r}
 #| message: false
 library(tidyverse)
+library(lubridate)
 ```
 
 # 正则表达式
@@ -151,6 +152,28 @@ df %>%
   mutate(a = cur_group_id(), # 返回分组的组号
          b = row_number())
 ```
+
+### fill()
+
+- 根据小时分组对缺失值进行填充：
+
+    1 号 01:00 的缺失值用 2 号 01:00 的值补，若没有则用 3 号 01:00 时的值，以此类推。
+
+```{r}
+df <- tibble(
+  time = ymd_hms("2022-11-01-01-00-00") + hours(c(0:3, 24:27, 48:51)),
+  value = c(rep(NA, 5), 1:7))
+
+df
+```
+
+```{r}
+df %>% 
+  arrange(time) %>%  # 对时间进行排序
+  group_by(hour(time)) %>%  # 按照小时对时间进行分组
+  fill(value, .direction = "up") # 每个组内从下到上填充缺失值
+```
+
 
 ## ggplot2
 
